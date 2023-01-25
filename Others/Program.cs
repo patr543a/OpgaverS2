@@ -8,6 +8,6 @@ Console.WriteLine($"Matched? {m.Success}");
 
 partial class Program
 {
-    [GeneratedRegex("^[A-Å]{3}\\-[1-9][0-9]{2}$")]
+    [GeneratedRegex("^[A-ZÆØÅ]{3}\\-[1-9][0-9]{2}$")]
     private static partial Regex Reg();
 }
