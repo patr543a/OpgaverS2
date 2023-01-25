@@ -6,7 +6,7 @@ namespace Opgave05.Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            _ = "Test".GetHashCode();
         }
     }
 }

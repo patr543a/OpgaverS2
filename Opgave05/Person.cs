@@ -1,6 +1,6 @@
 ﻿namespace Opgave05
 {
-    public class Person
+    public abstract class Person
     {
         private int _id = 0;
         private string _name = string.Empty;
@@ -18,6 +18,7 @@
                     _id = value;
             }
         }
+
         public string Name
         { 
             get => _name; 
@@ -63,5 +64,7 @@
         }
 
         public override string ToString() => $"Id: {Id}, Name: {Name}, Birthdate: {Birthdate:F}, Title: {Title}";
+
+        public abstract string GetRating();
     }
 }

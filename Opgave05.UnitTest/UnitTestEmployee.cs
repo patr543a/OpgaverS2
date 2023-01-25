@@ -1,10 +1,11 @@
 ﻿using Opgave05.People;
-using System.Xml.Linq;
 
 namespace Opgave05.UnitTest
 {
-    public sealed class UnitTest3
+    public class UnitTestEmployee
     {
+        // New
+
         [Fact]
         public void Employee_ValidPosition_ReturnsTrue()
         {
@@ -47,6 +48,8 @@ namespace Opgave05.UnitTest
             Assert.Throws<ArgumentOutOfRangeException>(() => new Employee(1, "Valid", DateTime.UtcNow, "Valid", "Valid", DateTime.UtcNow, -1m));
         }
 
+        // Mutation
+
         [Fact]
         public void Employee_ValidPositionMutation_ReturnsTrue()
         {
@@ -78,7 +81,7 @@ namespace Opgave05.UnitTest
         [Fact]
         public void Employee_InvalidHiredMutation_ThrowsException()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => 
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 var e = new Employee(1, "Valid", DateTime.UtcNow, "Valid", "Valid", DateTime.UtcNow, 1m);
                 e.Hired = DateTime.UtcNow.Subtract(new TimeSpan(7306, 0, 0));
@@ -97,20 +100,14 @@ namespace Opgave05.UnitTest
         [Fact]
         public void Employee_InvalidSalaryMutation_ThrowsException()
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => 
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
             {
                 var e = new Employee(1, "Valid", DateTime.UtcNow, "Valid", "Valid", DateTime.UtcNow, 1m);
                 e.Salary = -1m;
             });
         }
 
-        [Fact]
-        public void SalesPerson_GetPercentageOfSalaryAndSales_ReturnsTrue()
-        {
-            var s = new SalesPerson(1, "Valid", DateTime.UtcNow, "Valid", "Valid", DateTime.UtcNow, 1234m, 123.4m, "Valid");
-
-            Assert.True(s.GetPercentageOfSalaryAndSales() == 10m);
-        }
+        // Others
 
         [Fact]
         public void Employee_ToString_ReturnsTrue()

@@ -2,7 +2,7 @@
 {
     public class Employee : Person
     {
-        private string _position = "";
+        private string _position = string.Empty;
         private DateTime _hired;
         private decimal _salary;
 
@@ -51,5 +51,7 @@
         }
 
         public override string ToString() => $"{base.ToString()}, Position: {Position}, Hired: {Hired:F}, Salary: {Salary:c2}";
+
+        public override string GetRating() => throw new NotImplementedException("This method is not intended to be called on employee");
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Opgave05.People
 {
-    public sealed class Customer : Person
+    public class Customer : Person
     {
         private DateTime _created;
         private decimal _spent;
@@ -35,5 +35,15 @@
         }
 
         public override string ToString() => $"{base.ToString()}, Created: {Created:F}, Spent: {Spent:c2}";
+
+        public override string GetRating() => (_spent / (_created.Year * 12 + _created.Month)) switch
+        {
+            >= 0 and <= 100 => "*",
+            > 100 and <= 250 => "**",
+            > 250 and <= 500 => "***",
+            > 500 and <= 1000 => "****",
+            > 1000 => "*****",
+            _ => "Fejl",
+        };
     }
 }

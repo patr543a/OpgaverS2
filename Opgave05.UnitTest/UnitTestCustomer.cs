@@ -2,8 +2,10 @@
 
 namespace Opgave05.UnitTest
 {
-    public sealed class UnitTest1
+    public class UnitTestCustomer
     {
+        // New
+
         [Fact]
         public void Customer_ValidCreated_ReturnsTrue()
         {
@@ -31,6 +33,8 @@ namespace Opgave05.UnitTest
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new Customer(1, "Valid", DateTime.UtcNow, "Valid", DateTime.UtcNow, -1m));
         }
+
+        // Mutation
 
         [Fact]
         public void Customer_ValidCreatedMutation_ReturnsTrue()
@@ -69,6 +73,8 @@ namespace Opgave05.UnitTest
                 c.Spent = -1m;
             });
         }
+
+        // Others
 
         [Fact]
         public void Customer_ToString_ReturnsTrue()
