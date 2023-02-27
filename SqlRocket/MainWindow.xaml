@@ -1,0 +1,193 @@
+﻿<Window x:Class="SqlRocket.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SqlRocket"
+        xmlns:converters="clr-namespace:SqlRocket.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <converters:MeterConverter x:Key="meterConverter"/>
+        <converters:KilogramConverter x:Key="kilogramConverter"/>
+        <converters:DateConverter x:Key="dateConverter"/>
+        <converters:DegreeConverter x:Key="degreeConverter"/>
+    </Window.Resources>
+    <Grid>
+        <GroupBox Header="Redigere">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <GroupBox x:Name="GbxRocket" Header="Ny Raket" Visibility="Visible">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+
+                        <Label x:Name="TmpOut" Grid.Column="1" Grid.Row="1" Content="Navn" />
+                        <Label Grid.Column="1" Grid.Row="3" Content="Nyttelast til LEO" />
+                        <Label Grid.Column="1" Grid.Row="5" Content="Bredde" />
+                        <Label Grid.Column="1" Grid.Row="7" Content="Højde" />
+
+                        <TextBox Grid.Column="3" Grid.Row="1" />
+                        <TextBox Grid.Column="3" Grid.Row="3" />
+                        <TextBox Grid.Column="3" Grid.Row="5" />
+                        <TextBox Grid.Column="3" Grid.Row="7" />
+
+                        <Button x:Name="BtnRocket" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Content="Opret Raket" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox x:Name="GbxSite" Header="Ny Sted" Visibility="Hidden">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="1" Grid.Row="1" Content="Sted Navn" />
+                        <Label Grid.Column="1" Grid.Row="3" Content="Adresse" />
+                        <Label Grid.Column="1" Grid.Row="5" Content="Længdegrad" />
+                        <Label Grid.Column="1" Grid.Row="7" Content="Breddegrad" />
+                        <Label Grid.Column="1" Grid.Row="9" Content="Åbnede" />
+
+                        <TextBox Grid.Column="3" Grid.Row="1" />
+                        <TextBox Grid.Column="3" Grid.Row="3" />
+                        <TextBox Grid.Column="3" Grid.Row="5" />
+                        <TextBox Grid.Column="3" Grid.Row="7" />
+                        <DatePicker Grid.Column="3" Grid.Row="9" />
+
+                        <Button x:Name="BtnSite" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="3" Content="Opret Sted" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox x:Name="GbxLaunch" Header="Ny Opsendelse" Visibility="Hidden">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Column="1" Grid.Row="1" Content="Mission Navn" />
+                        <Label Grid.Column="1" Grid.Row="3" Content="Sted Navn" />
+                        <Label Grid.Column="1" Grid.Row="5" Content="Raket Navn" />
+                        <Label Grid.Column="1" Grid.Row="7" Content="Dato" />
+
+                        <TextBox Grid.Column="3" Grid.Row="1" />
+                        <TextBox Grid.Column="3" Grid.Row="3" />
+                        <TextBox Grid.Column="3" Grid.Row="5" />
+                        <DatePicker Grid.Column="3" Grid.Row="7" />
+
+                        <Button x:Name="BtnLaunch" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="3" Content="Opret Opsendelse" />
+                    </Grid>
+                </GroupBox>
+                
+                <GroupBox Header="Data" Grid.Column="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+
+                        <ComboBox x:Name="CmxTables" Grid.Column="1" Grid.Row="1" SelectionChanged="CmxTables_SelectionChanged" SelectedIndex="0" />
+
+                        <DataGrid x:Name="DgdRockets" Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" Visibility="Hidden" SelectionChanged="DgdRockets_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Raket id" Binding="{Binding RocketId}" />
+                                <DataGridTextColumn Header="Raket navn" Binding="{Binding RocketName}" />
+                                <DataGridTextColumn Header="Nyttelast til LEO" Binding="{Binding Payload, Converter={StaticResource kilogramConverter}}" />
+                                <DataGridTextColumn Header="Bredde" Binding="{Binding Width, Converter={StaticResource meterConverter}}" />
+                                <DataGridTextColumn Header="Højde" Binding="{Binding Height, Converter={StaticResource meterConverter}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <DataGrid x:Name="DgdLaunchSites" Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" Visibility="Hidden" SelectionChanged="DgdLaunchSites_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Sted id" Binding="{Binding LaunchSiteId}" />
+                                <DataGridTextColumn Header="Sted navn" Binding="{Binding SiteName}" />
+                                <DataGridTextColumn Header="Adresse" Binding="{Binding Address}" />
+                                <DataGridTextColumn Header="Længdegrad" Binding="{Binding Longitude, Converter={StaticResource degreeConverter}}" />
+                                <DataGridTextColumn Header="Breddegrad" Binding="{Binding Latitude, Converter={StaticResource degreeConverter}}" />
+                                <DataGridTextColumn Header="Åbnede" Binding="{Binding Founded, Converter={StaticResource dateConverter}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <DataGrid x:Name="DgdLaunches" Grid.Column="1" Grid.Row="3" AutoGenerateColumns="False" Visibility="Hidden" SelectionChanged="DgdLaunches_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Opsendelse id" Binding="{Binding LaunchId}" />
+                                <DataGridTextColumn Header="Mission navn" Binding="{Binding MissionName}" />
+                                <DataGridTextColumn Header="Sted id" Binding="{Binding SiteId}" />
+                                <DataGridTextColumn Header="Raket id" Binding="{Binding RocketId}" />
+                                <DataGridTextColumn Header="Dato" Binding="{Binding Date, Converter={StaticResource dateConverter}}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+        
+    </Grid>
+</Window>

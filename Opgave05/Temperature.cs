@@ -4,25 +4,30 @@ namespace Opgave05
 {
     public class Temperature : IComparable<Temperature>, IEquatable<Temperature>, ICloneable
     {
-        private const decimal FiveOverNine = 5 / 9;
-        private const decimal ZeroPoint = 273.15m;
+        public static Temperature Zero => new(0, TemperatureScale.Celsius);
+        public static Temperature AbsoluteZero => new(0, TemperatureScale.Kelvin);
+        public static Temperature PlanckTemperature => new(1.4168e32, TemperatureScale.Kelvin);
 
-        private decimal _degrees;
+        private const double FiveOverNine = 5 / 9;
+        private const double ZeroPoint = 273.15;
+
+        private double _degrees;
         private TemperatureScale _scale;
 
-        public Temperature(decimal degrees)
-        {
-            _degrees = degrees;
-            _scale = TemperatureScale.Celsius;
-        }
+        public Temperature(double degrees) : this(degrees, TemperatureScale.Celsius, TemperatureScale.Celsius) { }
 
-        public Temperature(decimal degrees, TemperatureScale scale)
-        {
-            _degrees = degrees;
-            _scale = scale;
-        }
+        public Temperature(double degrees, TemperatureScale scale) : this(degrees, scale, scale) { }
 
-        public Temperature(decimal degrees, TemperatureScale from, TemperatureScale to) => ToScale(degrees, from, to);
+        public Temperature(double degrees, TemperatureScale from, TemperatureScale to)
+        {
+            ToScale(degrees, from, to);
+
+            if (this < AbsoluteZero)
+                throw new ArgumentOutOfRangeException(nameof(degrees), "Temperature cannot be colder than absolute Zero (0 K)");
+
+            if (this > PlanckTemperature)
+                throw new ArgumentOutOfRangeException(nameof(degrees), "Temperature cannot be hotter than the planck temperature (1.4168 x 10^32 K)");
+        }
 
         public object Clone() => DeepCopy();
 
@@ -57,7 +62,7 @@ namespace Opgave05
 
         public override int GetHashCode() => _degrees.GetHashCode() ^ _scale.GetHashCode();
 
-        public decimal ToCelsius()
+        public double ToCelsius()
         {
             return _degrees = _scale switch
             {
@@ -67,7 +72,7 @@ namespace Opgave05
             };
         }
 
-        public decimal ToFahrenheit()
+        public double ToFahrenheit()
         {
             return _degrees = _scale switch
             {
@@ -77,7 +82,7 @@ namespace Opgave05
             };
         }
 
-        public decimal ToKelvin()
+        public double ToKelvin()
         {
             return _degrees = _scale switch
             {
@@ -87,9 +92,15 @@ namespace Opgave05
             };
         }
 
-        public decimal ToScale(decimal degrees, TemperatureScale from, TemperatureScale to)
+        public double ToScale(double degrees, TemperatureScale from, TemperatureScale to)
         {
             _scale = to;
+
+            if (from == to)
+            {
+                _degrees = degrees;
+                return degrees;
+            }
 
             var t = new Temperature(degrees, from);
 
@@ -177,6 +188,6 @@ namespace Opgave05
 
         public static Temperature operator /(Temperature left, Temperature right) => left.Divide(right);
 
-        public static implicit operator Temperature(decimal n) => new(n);
+        public static implicit operator Temperature(double n) => new(n);
     }
 }
